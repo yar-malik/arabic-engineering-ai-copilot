@@ -2,12 +2,20 @@
 
 > Ask questions of decades of engineering manuals, drawings, work orders and incident reports — with every answer citing its source page.
 
-Built for Saudi Arabia. The voices are trained around **Najdi Arabic** — the
-dialect spoken in Riyadh and central Saudi Arabia — with Gulf, Egyptian and
-Modern Standard Arabic also available, plus English and Arabic/English
-code-switching in the same sentence.
+Built for Saudi Arabia. Manuals, drawings, procedures, work orders and
+incident reports — in Arabic, English or both — become something an engineer
+can simply ask, and every answer shows the document and page it came from.
+None of it leaves your network.
 
-**▶ [Try the interactive demo](https://voho.ai/demos#industrial-copilot)** — runs in your browser, no sign-up.
+<p align="center">
+  <a href="https://voho.ai/demos/industrial-copilot">
+    <img src="docs/demo.png" alt="An engineering question answered from thirty years of manuals, work orders and incident reports, with each answer citing the document and page it came from" width="900">
+  </a>
+</p>
+
+<p align="center">
+  <b><a href="https://voho.ai/demos/industrial-copilot">▶ Play the live demo</a></b> — runs in your browser, no sign-up.
+</p>
 
 ---
 
@@ -105,14 +113,14 @@ all. Point `VOHO_BASE_URL` at your own deployment and nothing else changes.
 
 ## Other examples in this series
 
-| Repository | What it covers |
-| --- | --- |
-| [saudi-arabic-voice-agent](https://github.com/yar-malik/saudi-arabic-voice-agent) | Phone agents in Najdi Arabic |
-| [arabic-document-ai](https://github.com/yar-malik/arabic-document-ai) | Reading Saudi invoices, IDs and contracts |
-| [arabic-voice-dictation-enterprise](https://github.com/yar-malik/arabic-voice-dictation-enterprise) | Speaking instead of typing |
-| [arabic-engineering-ai-copilot](https://github.com/yar-malik/arabic-engineering-ai-copilot) | Asking engineering archives |
-| [saudi-enterprise-ai-agent-platform](https://github.com/yar-malik/saudi-enterprise-ai-agent-platform) | Agents that act in SAP and ServiceNow |
-| [archibus-sap-ai-orchestration](https://github.com/yar-malik/archibus-sap-ai-orchestration) | Facilities, Archibus, IoT |
+| Repository | What it covers | Live demo |
+| --- | --- | --- |
+| [saudi-arabic-voice-agent](https://github.com/yar-malik/saudi-arabic-voice-agent) | Phone agents in Najdi Arabic | [Play it](https://voho.ai/demos/contact-center-ai) |
+| [arabic-document-ai](https://github.com/yar-malik/arabic-document-ai) | Reading Saudi invoices, IDs and contracts | [Play it](https://voho.ai/demos/document-ai) |
+| [arabic-voice-dictation-enterprise](https://github.com/yar-malik/arabic-voice-dictation-enterprise) | Speaking instead of typing | [Play it](https://voho.ai/demos/voice-os) |
+| [arabic-engineering-ai-copilot](https://github.com/yar-malik/arabic-engineering-ai-copilot) | Asking engineering archives | [Play it](https://voho.ai/demos/industrial-copilot) |
+| [saudi-enterprise-ai-agent-platform](https://github.com/yar-malik/saudi-enterprise-ai-agent-platform) | Agents that act in SAP and ServiceNow | [Play it](https://voho.ai/demos/sovereign-agent-platform) |
+| [archibus-sap-ai-orchestration](https://github.com/yar-malik/archibus-sap-ai-orchestration) | Facilities, Archibus, IoT | [Play it](https://voho.ai/demos/smart-cities) |
 
 ## Want this in production?
 
