@@ -3,22 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Ask questions of decades of engineering manuals, drawings, work orders and incident reports \u2014 with every answer citing its source page.",
+  "description": "Ask questions of decades of engineering manuals, drawings, work orders and incident reports — with every answer citing its source page.",
+  "engines": { "node": ">=18" },
   "scripts": {
-    "start": "node examples/node/index.mjs",
-    "stream": "node examples/node/stream.mjs"
+    "start": "node examples/node/index.mjs"
   },
-  "keywords": [
-    "saudi-arabia",
-    "arabic",
-    "oil-and-gas",
-    "engineering",
-    "rag",
-    "knowledge-base",
-    "maintenance",
-    "sap-pm",
-    "enterprise-ai",
-    "industrial-ai"
-  ],
   "license": "MIT"
 }
