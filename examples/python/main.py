@@ -1,41 +1,65 @@
-"""
-Arabic Engineering AI Copilot — minimal Python example.
+"""Ask an engineering document a question and get the page it came from.
 
-Speaks Najdi Saudi Arabic through the Voho speech API and writes an MP3.
-"""
+Standard library only — Python 3.9 or newer.
 
+    export VOHO_API_KEY=voho_sk_live_...   # app.voho.ai -> API Tokens
+    python examples/python/main.py
+
+New accounts start with $25 of credit, so this costs nothing to try.
+"""
+import base64
+import json
 import os
 import sys
-
-import requests
+import urllib.error
+import urllib.request
 
 KEY = os.environ.get("VOHO_API_KEY")
 BASE = os.environ.get("VOHO_BASE_URL", "https://app.voho.ai")
 
 if not KEY:
-    sys.exit("Set VOHO_API_KEY first — see .env.example")
+    sys.exit("Set VOHO_API_KEY first — create one at https://app.voho.ai/tokens")
 
-# Layla is a Najdi voice. faisal, nouf and omar are Najdi as well.
-payload = {
-    "text": "أهلاً بك في فوهو، كيف أقدر أساعدك اليوم؟",
-    "voice": "layla",
-    "model": "sada-1",
-    # Use "mulaw" for telephony — 8 kHz, no transcoding needed.
-    "format": "mp3",
-}
 
-res = requests.post(
-    f"{BASE}/v1/speech",
-    headers={"Authorization": f"Bearer {KEY}"},
-    json=payload,
-    timeout=30,
-)
+def voho(path, body, raw=False):
+    req = urllib.request.Request(
+        BASE + path,
+        data=json.dumps(body).encode(),
+        headers={"Authorization": "Bearer " + KEY, "Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req) as res:
+            return res.read() if raw else json.load(res)
+    except urllib.error.HTTPError as err:
+        detail = json.loads(err.read() or b"{}").get("error", {})
+        sys.exit("%s: %s" % (detail.get("code", err.code), detail.get("message", "request failed")))
 
-if not res.ok:
-    sys.exit(f"Request failed: {res.status_code} {res.text[:200]}")
 
-with open("output.mp3", "wb") as fh:
-    fh.write(res.content)
+def spent(cents):
+    print("\nCharged $%.2f from your Voho balance." % (cents / 100))
 
-print("Wrote output.mp3")
-print("Characters billed:", res.headers.get("x-voho-characters"))
+args = sys.argv[1:]
+if len(args) >= 2:
+    path, question = args[0], args[1]
+elif len(args) == 1:
+    path, question = None, args[0]
+else:
+    path, question = None, "What torque do the seal gland bolts take, and which revision is this?"
+
+sample = BASE + "/samples/sample-manual.pdf"
+if path:
+    with open(path, "rb") as fh:
+        data = base64.b64encode(fh.read()).decode()
+else:
+    print("No document given — asking the sample manual at", sample)
+    with urllib.request.urlopen(sample) as res:
+        data = base64.b64encode(res.read()).decode()
+
+print("\nQ:", question)
+out = voho("/v1/documents/ask", {"file": data, "mime_type": "application/pdf", "question": question})
+print("A:", out["answer"])
+if not out["answered"]:
+    print("   (not in the document — it said so rather than guessing)")
+for q in out["quotes"]:
+    print("   >", q)
+spent(out["cost_cents"])
