@@ -22,7 +22,7 @@ None of it leaves your network.
 
 You do not have to clone anything to see whether this works for you. The same
 engine this repository calls is running at **[app.voho.ai/engineering-ai](https://app.voho.ai/engineering-ai)** —
-Ask a manual a question, in the browser, in about a minute.
+ask a manual a question, in the browser, in about a minute.
 
 New accounts start with **$25 of credit**, and one balance and one API key
 cover every Voho product: Engineering AI, and the five beside it.
